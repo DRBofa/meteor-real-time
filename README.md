@@ -1,7 +1,7 @@
 # Read
 
 - [Run](#To-run-this-Project)
-- [Meteor+Vue](#1-Meteor+Vue)
+- [Meteor+Vue](#1-Meteor-with-Vue)
 - [Validated Methods](#2-Validated-Methods)
 
 # meteor-validartedMethod-calling-method
@@ -16,7 +16,7 @@ meteor npm i
 meteor
 ```
 
-# 1 Meteor+Vue
+# 1 Meteor with Vue
 
 ## 1.1 Document
 
