@@ -1,10 +1,10 @@
 # meteor-validartedMethod-calling-method
 # To run this Project
 ```bash
-  meteor npm i
+meteor npm i
  ```
 ```bash
-  meteor
+meteor
 ```
 
 # 1 Meteor+Vue
@@ -13,11 +13,11 @@
 
 ### https://guide.meteor.com/vue.html
 ```bash
-  meteor npm install --save vue
+meteor npm install --save vue
 ```
 
 ```bash
-  meteor add akryum:vue-component
+meteor add akryum:vue-component
 ```
 # 2 Validated Methods
 
@@ -31,12 +31,12 @@
 
 ### យើងត្រូវការដំឡើង Package មួយចំនួនទៀត
 ```bash
-  meteor npm install --save simpl-schema
+meteor npm install --save simpl-schema
 ```
 #### https://www.npmjs.com/package/simpl-schema
 
 ### បើយើងចង់ Validate ទៅលើ collections យើងត្រូវតម្លើង package collection2
 ```bash
-  meteor add aldeed:collection2
+meteor add aldeed:collection2
 ```
 #### https://github.com/aldeed/meteor-collection2
