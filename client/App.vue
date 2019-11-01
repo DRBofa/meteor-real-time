@@ -1,108 +1,54 @@
 <template>
   <div>
-    <h1>
-      <center>Vuejs Validated Methods និងការហៅMethodដោយimport ពីទីតាំដើម </center>
-    </h1>
-    <br>
-    <hr>
-    <div>
-      <div class="form-group">
-        <label>Name</label>
-        <input
-          v-model="form.name"
-          class="form-control"
-          placeholder="Enter name"
-        >
-        <small class="form-text text-muted">Type your name!</small>
-      </div>
-      <div class="form-group">
-        <label>Age</label>
-        <input
-          v-model.number="form.age"
-          class="form-control"
-          placeholder="Enter age"
-        >
-        <small class="form-text text-muted">Enter the number It can't be string !</small>
-      </div>
+    <div v-if="!$subReady.Item">Loading...</div>
+    <div v-else>
 
-      <div class="form-group">
-        <label>Gender</label>
-        <input
-          v-model="form.gender"
-          class="form-control"
-          placeholder="Enter gender"
-        >
-        <small class="form-text text-muted">the value M or F</small>
-      </div>
+      Enter name
+      <input
+        v-model="name"
+        placeholder="Name"
+      >
+      <button @click="updateItem">Update Item</button>
+      <p>items:</p>
+      {{items}}
 
-      <div class="form-group">
-        <label>Email</label>
-        <input
-          v-model="form.email"
-          class="form-control"
-          placeholder="Enter Email"
-        >
-        <small class="form-text text-muted">Type of emails</small>
-      </div>
-
-      <button
-        @click="btnSubmit"
-        class="btn btn-primary"
-      >Submit</button>
     </div>
-    {{customers}}
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import {
-  insertCustomer,
-  findCustomer
-} from "../imports/methods/customerMethods";
+import "../imports/collections/items";
+
 export default {
   data() {
     return {
-      customers: [],
-      form: {
-        name: "Jame",
-        age: 20,
-        gender: "F",
-        email: "jmae@slfs.com"
-      }
+      name: "Jame"
     };
   },
-  mounted() {
-    this.getData();
-  },
+  // Vue Methods
   methods: {
-    getData() {
-      axios
-        .get("http://localhost:3000/findCustomer")
-        .then(response => {
-          this.customers = response.data;
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.error(e);
-        });
+    updateItem() {
+      Meteor.call("updateItem", { name: this.name, _id: "MCQpLwPc9EwvLXAHo" }); // not Meteor reactive
+    }
+  },
+  // Meteor reactivity
+  meteor: {
+    // Subscriptions - Errors not reported spelling and capitalization.
+    $subscribe: {
+      Item: []
     },
-    async btnSubmit() {
-      // console.log(typeof this.form.age);
-      axios
-        .get("http://localhost:3000/insertCustomer", {
-          params: this.form
-        })
-        .then(doc => {
-          console.log(doc);
-        })
-        .catch(e => {
-          console.error("Error :", e);
-        });
+    // A Minimongo cursor on the Item collection is added to the Vue instance
+    items() {
+      // Here you can use Meteor reactive sources like cursors or reactive vars
+      // as you would in a Blaze template helper
+      return Item.find().fetch();
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
+p {
+  font-size: 2em;
+}
 </style>

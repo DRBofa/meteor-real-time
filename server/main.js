@@ -1,14 +1,13 @@
 import { Meteor } from "meteor/meteor";
-Meteor.startup(() => {
-  import "../imports/methods/customerMethods";
-  // code to run on server at startup
-});
 
-JsonRoutes.setResponseHeaders({
-  "Cache-Control": "no-store",
-  Pragma: "no-cache",
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers":
-    "Content-Type, Authorization, X-Requested-With"
+// Item
+import "../imports/collections/items";
+import "../imports/publications/items";
+import "../imports/methods/UpdateItem";
+
+Meteor.startup(() => {
+  // Update the current time
+  // Meteor.call("UpdateTime");
+  Item.insert({ name: "Bona" });
+  // console.log(`The time is now ${Time.findOne().time}`);
 });
