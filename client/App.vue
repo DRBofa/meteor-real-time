@@ -50,29 +50,55 @@
         class="btn btn-primary"
       >Submit</button>
     </div>
+    {{customers}}
   </div>
 </template>
 
 <script>
-import { insertCustomer } from "../imports/methods/customerMethods";
+import axios from "axios";
+import {
+  insertCustomer,
+  findCustomer
+} from "../imports/methods/customerMethods";
 export default {
   data() {
     return {
+      customers: [],
       form: {
-        name: "",
-        age: "",
-        gender: "",
-        email: ""
+        name: "Jame",
+        age: 20,
+        gender: "F",
+        email: "jmae@slfs.com"
       }
     };
   },
+  mounted() {
+    this.getData();
+  },
   methods: {
-    btnSubmit() {
-      insertCustomer.call(this.form, (error, result) => {
-        if (result) {
-          console.log(result);
-        } else console.log(error);
-      });
+    getData() {
+      axios
+        .get("http://localhost:3000/findCustomer")
+        .then(response => {
+          this.customers = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.error(e);
+        });
+    },
+    async btnSubmit() {
+      // console.log(typeof this.form.age);
+      axios
+        .get("http://localhost:3000/insertCustomer", {
+          params: this.form
+        })
+        .then(doc => {
+          console.log(doc);
+        })
+        .catch(e => {
+          console.error("Error :", e);
+        });
     }
   }
 };

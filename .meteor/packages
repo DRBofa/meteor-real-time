@@ -22,3 +22,5 @@ insecure@1.0.7                # Allow all DB writes from clients (for prototypin
 akryum:vue-component
 mdg:validated-method
 aldeed:collection2@3.0.0
+simple:rest-method-mixin
+simple:json-routes

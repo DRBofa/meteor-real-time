@@ -55,3 +55,30 @@ meteor add aldeed:collection2
 ```
 
 #### https://github.com/aldeed/meteor-collection2
+
+# [Add simple rest method-mixnin](https://atmospherejs.com/simple/rest-method-mixin)
+```bash
+meteor add simple:rest-method-mixin
+```
+[Usage backEnd](imports/methods/customerMethods.js)
+
+[Usage frontEnd](client/App.vue)
+
+# [បើកច្រកឲ្យគេ Access API](https://atmospherejs.com/simple/json-routes)
+```bash
+meteor add simple:json-routes
+```
+[Usage configuration](/server/main.js)
+
+copy code bellow past to `/server/main.js`
+
+```js
+JsonRoutes.setResponseHeaders({
+  "Cache-Control": "no-store",
+  Pragma: "no-cache",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
+  "Access-Control-Allow-Headers":
+    "Content-Type, Authorization, X-Requested-With"
+});
+```
