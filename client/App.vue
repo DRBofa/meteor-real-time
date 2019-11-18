@@ -2,16 +2,17 @@
   <div>
     <div v-if="!$subReady.Item">Loading...</div>
     <div v-else>
-
       Enter name
-      <input
-        v-model="name"
-        placeholder="Name"
-      >
+      <input v-model="name" placeholder="Name" />
       <button @click="updateItem">Update Item</button>
-      <p>items:</p>
-      {{items}}
-
+      <table>
+        <tr v-for="item in items" :key="item._id">
+          <th>{{ item.name }}</th>
+          <th>
+            <button @click="deleteItem(item._id)">Delete</button>
+          </th>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -29,6 +30,16 @@ export default {
   methods: {
     updateItem() {
       Meteor.call("updateItem", { name: this.name, _id: "MCQpLwPc9EwvLXAHo" }); // not Meteor reactive
+    },
+    deleteItem(id) {
+      alert(id);
+      Meteor.call("deleteItem", id, (err, result) => {
+        if (result) {
+          console.log(result);
+        } else {
+          console.log(err);
+        }
+      });
     }
   },
   // Meteor reactivity
